@@ -1,10 +1,16 @@
 import "../css/Signin.css";
-import React, { Component, useState } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import axios from "axios";
+import base_url from "../utils/bootapi";
+import swal from "sweetalert2";
 
 const Signin = () => {
 
+  useEffect(() => {
+    document.title = "Signin";
+  })
   const [user, setUser] = useState({})
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -45,14 +51,70 @@ const Signin = () => {
     e.preventDefault()
     if (isValidate(user)) {
       console.log(user)
-      // if(res.user == "Admin"){
-      //   navigate("/admin")
+
+      // try{
+      //   axios.post(`${base_url}/token`, user).then((resp) => {
+      //     console.log(resp);
+      //     localStorage.setItem("userToken", resp.data.token);
+
+      //     navigate("/user");
+      //   });
       // }
+
+      axios.post(`${base_url}/token`, user).then(
+        (resp) => {
+          if (resp.data.length == 0) {
+            swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Wrong Credentials Entered or you have not registered yet.",
+            });
+          }
+          else {
+            localStorage.setItem("userToken", resp.data.token);
+            localStorage.setItem("userEmail", user.email)
+            const userDetails = axios.get(`${base_url}/api/users/getuserbyemail/${user.email}`);
+            console.log(userDetails);
+
+
+            //   if (response.data[0].admin == true) {
+            //     window.location = "/admin";
+            //     sessionStorage.setItem("admin", "admin");
+            //   }
+            //   // else if((localStorage.getItem("user")  null)){
+            //   // };
+            //   else {
+            //     sessionStorage.setItem("username", response.data[0].name);
+            //     const userdata = {
+            //       name: response.data[0].name,
+            //       email: response.data[0].email,
+            //       city: response.data[0].city,
+            //       phone: response.data[0].phone,
+            //     };
+            //     sessionStorage.setItem("userdata", JSON.stringify(userdata));
+            //     sessionStorage.setItem("userSession", response.data[0].email);
+            //     localStorage.setItem("user", response.data[0].email);
+            //     cookie.save("userdata", JSON.stringify(userdata), { path: '/' });
+            //     window.location = "/home";
+            //   }
+            // }
+          }
+        },
+        (error) => {
+          console.log(error);
+          swal.fire({
+            icon: "error",
+            title: "Oh no!",
+            text: "Server is down",
+          });
+        }
+      );
+
     }
 
   }
 
-   //return (
+  //return (
   //   <div className='container'>
   //     <table>
   //       <tr>
@@ -108,9 +170,9 @@ const Signin = () => {
   //     </tr>
   //     </table>
   //   </div>
-    
+
   //)
-  return(
+  return (
     <div class="login-img">
       <div className="vh-100 d-flex">
         <div className="container w-75 m-auto ">
@@ -158,30 +220,15 @@ const Signin = () => {
                       required
                     />
                   </div>
-                  {/* <div className="col-md-12 mt-5 text-center">
-                    <h5 className="fs-5">
-                      Not Registered??
-                      <Link
-                        to="/register"
-                        className="text-decoration-none fs-5"
-                      >
-                        &nbsp; &nbsp;Register here
-                      </Link>
-                    </h5>
-                  </div> */}
-                  {/* <div class="col-md-12 mt-5 text-center">
-                    <Link to="/forget" class="text-decoration-none fs-5">
-                      Forgot password?
-                    </Link>
-                  </div> */}
                   <div class="col-md-12 text-center">
                     <button
                       type="submit"
                       class="btn btn-lg btn-primary ps-5 pe-5 p-2  mb-2"
+                      onClick={handleSubmit}
                     >
                       Login
                     </button>
-                    <br/>
+                    <br />
                     <h5 >Don't have an account? Click <Link to="/signup">here</Link></h5>
                   </div>
                 </form>

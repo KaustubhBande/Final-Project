@@ -6,13 +6,6 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Turf = (props) => {
 
-    // const [name, setName] = useState(0); 
-    // // const navigate = useNavigate();
-    // const HandleClick= () => {
-    //     // navigate("/singleturf", state)
-
-    //     console.log("Clicked");
-    // }
     return (
         <div>
             <Card style={{ width: '18rem' }} className="m-5">
@@ -20,9 +13,9 @@ const Turf = (props) => {
                 <Card.Body>
                     <Card.Title>{props.name}</Card.Title>
                     <Card.Text>
-                        {props.address} {props.contact} {props.xy}
+                        {props.address} {props.contact} {props.loc}
                     </Card.Text>
-                    <Link to="/singleturf" state={props.xy}><Button variant="primary">Book Now</Button></Link>
+                    <Link to="/singleturf" state={props.loc}><Button variant="primary">Book Now</Button></Link>
                 </Card.Body>
             </Card>            
         </div>

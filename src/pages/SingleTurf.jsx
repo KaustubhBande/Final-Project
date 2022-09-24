@@ -7,10 +7,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const SingleTurf = () => {
     const location = useLocation();
-    let [turfData, setTurfData] = useState([]);
+    let [turfData, setTurfData] = useState({});
     useEffect(() => {
         console.log(location.state);
-        axios.get(`${base_url}/api/turfs/getturf/${location.state}`)
+        axios.get(`${base_url}/api/turfs/getturf/${location.state}`, {
+            headers : {Authorization : `Bearer ${localStorage.getItem("userToken")}`}
+        })
             .then((response) => {
                 console.log(response);
                 setTurfData(response.data);
@@ -22,9 +24,9 @@ const SingleTurf = () => {
     }, []);
     return (
         <div>
-            {turfData.map((item, index) => {
-                return <h4>{item.turfName}</h4>
-            })}
+            
+               <h4>{turfData.turfName}</h4>
+            
         </div>
     );
 };

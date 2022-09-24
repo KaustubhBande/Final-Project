@@ -10,7 +10,9 @@ const TurfList = (props) => {
     let [dataobj, setDataObj] = useState([]);
     useEffect(() => {
         console.log(location);
-        axios.get(`${base_url}/api/turfs/getall`)
+        axios.get(`${base_url}/api/turfs/getturfbyadd/${location.state}`, {
+            headers : {Authorization : `Bearer ${localStorage.getItem("userToken")}`}
+        })
             .then((response) => {
                 console.log(response);
                 setDataObj(response.data);
@@ -24,7 +26,7 @@ const TurfList = (props) => {
     return (
         <div className='d-flex-row justify-content-center align-content-center'>
             {dataobj.map((item, index) => {
-                return <Turf xy={item.id} name={item.turfName} address={item.turfAddress} contact={item.turfContact}/> 
+                return <Turf loc={item.id} name={item.turfName} address={item.turfAddress} contact={item.turfContact}/> 
             })}
            
         </div>

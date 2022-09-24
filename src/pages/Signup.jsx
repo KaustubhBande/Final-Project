@@ -1,17 +1,19 @@
 import "../css/Signin.css";
-import React, { Component, useState } from 'react'
-import { renderMatches } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
+
+  useEffect(() => {
+    document.title = "Signup";
+  })
+
   const [user, setUser] = useState({})
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [FirstNameError, setFirstNameError] = useState("");
   const [LastNameError, setLastNameError] = useState("");
   const [ContactError, setContactError] = useState("");
-
-
 
   const handleChange = (e) => {
 

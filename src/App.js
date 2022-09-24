@@ -8,6 +8,14 @@ import User from "./pages/User";
 import UserProfile from "./pages/UserProfile";
 import UserHome from "./pages/UserHome";
 import UserBookings from "./pages/UserBookings";
+import Manager from "./pages/Manager";
+import ManagerHome from "./pages/ManagerHome";
+import ManagerProfile from "./pages/ManagerProfile";
+import ManagerBookings from "./pages/ManagerBookings";
+import Admin from "./pages/Admin";
+import Adminhome from "./pages/Adminhome";
+import SearchBookings from "./pages/SearchBookings";
+import AdminProfile from "./pages/AdminProfile";
 
 function App() {
   return (
@@ -18,6 +26,7 @@ function App() {
         <Route exact path="/signin" element={<Signin />} />
         <Route exact path="/turflist" element={<TurfList />} />
         <Route exact path="/singleturf" element={<SingleTurf />} />
+        {/* <Route exact path="*" element={<Error />}/> */}
       </Routes>
 
       <Routes>
@@ -25,6 +34,22 @@ function App() {
           <Route index element={<UserHome />} />
           <Route path="/user/userbookings" element={<UserBookings />} />
           <Route path="/user/userprofile" element={<UserProfile />} />
+        </Route>
+      </Routes>
+
+      <Routes>
+        <Route exact path="/manager" element={<Manager />} >
+          <Route index element={<ManagerHome />} />
+          <Route path="/manager/turfbookings" element={<ManagerBookings />} />
+          <Route path="/manager/profile" element={<ManagerProfile />} />
+        </Route>
+      </Routes>
+
+      <Routes>
+        <Route exact path="/admin" element={<Admin />} >
+          <Route index element={<Adminhome />} />
+          <Route path="/admin/searchbookings" element={<SearchBookings />} />
+          <Route path="/admin/profile" element={<AdminProfile />} />
         </Route>
       </Routes>
     </>
