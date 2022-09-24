@@ -1,0 +1,23 @@
+.footerbody{
+    max-height: 30vh;
+}
+
+.main-footer {
+    /* background-color: black; */
+    margin: 0;
+    padding-left: 40%;
+    max-height: 30vh;
+}
+
+.list-unstyled {
+    color: white;
+    font-size: large;
+    padding-top: 15px;
+}
+
+.text-xs-center {
+    color: aliceblue;
+    padding: 24px;
+    padding-left: 150px;
+    text-align: justify;
+}

@@ -1,0 +1,38 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-menu{ 
+    padding-right: 6rem; 
+    padding-top: 3rem;
+    list-style:none;
+    display:flex;
+    gap: 4rem;
+    color:rgb(247, 248, 249);
+}
+
+.header-menu>li:hover{
+    cursor: pointer;
+    color: skyblue;
+}
+
+.link{
+    color: rgb(247, 248, 249);
+    text-decoration: none;
+}
+
+.link:hover{
+    cursor: pointer;
+    color: skyblue;
+}
+
+.loc{
+    color: black;
+    text-decoration: none;
+}
+
+.loc:hover{
+    cursor: pointer;
+    color: royalblue;
+}
