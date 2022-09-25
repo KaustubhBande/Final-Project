@@ -2,9 +2,17 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 const Admin = () => {
+
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        localStorage.removeItem("userToken");
+        localStorage.removeItem("userEmail");
+        localStorage.removeItem("userId");
+        navigate("/", {replace: true}); 
+    }
     return (
         <div>
             <Navbar bg="success" variant='dark' expand="lg">
@@ -16,7 +24,7 @@ const Admin = () => {
                             <Nav.Link><Link to="/admin" style={styles.navLink}>Home</Link></Nav.Link>
                             <Nav.Link><Link to="/admin/profile" style={styles.navLink}>Admin Profile</Link></Nav.Link>
                             <Nav.Link><Link to="/admin/searchbookings" style={styles.navLink}>Search Bookings</Link></Nav.Link>
-                            <Nav.Link><Link style={styles.navLink}><button>Logout</button></Link></Nav.Link>
+                            <Nav.Link><Link style={styles.navLink}><button onClick={handleLogout} style={styles.button}>Logout</button></Link></Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
@@ -32,5 +40,11 @@ const styles = {
     navLink: {
         textDecoration: 'none',
         color: 'white'
+    },
+    button: {
+        background: 'transparent',
+        color: 'white',
+        textDecoration: 'none',
+        border: 'none'
     }
 }

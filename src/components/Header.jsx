@@ -25,7 +25,7 @@ export default Header;
 function NavLocation() {
     return (
         <NavDropdown title="Location" id="navbarScrollingDropdown">
-            <NavDropdown.Item><Link to="/turflist" state={"wakad"} className="loc">Wakad</Link></NavDropdown.Item>
+            <NavDropdown.Item><Link to="/turflist" state={"Wakad"} className="loc">Wakad</Link></NavDropdown.Item>
             <NavDropdown.Item><Link to="/turflist" state={"Kothrud"} className="loc">Kothrud</Link></NavDropdown.Item>
             <NavDropdown.Item><Link to="/turflist" state={"Katraj"} className="loc">Katraj</Link></NavDropdown.Item>
             <NavDropdown.Item><Link to="/turflist" state={"Shivaji Nagar"} className="loc">Shivaji Nagar</Link></NavDropdown.Item>

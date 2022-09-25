@@ -11,7 +11,9 @@ const User = () => {
     const navigate = useNavigate();
     const handleLogout = () => {
         localStorage.removeItem("userToken");
-        navigate("/signin");
+        localStorage.removeItem("userEmail");
+        localStorage.removeItem("userId");
+        navigate("/", {replace: true}); 
     }
 
     return (

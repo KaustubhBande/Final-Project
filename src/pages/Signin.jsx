@@ -47,7 +47,7 @@ const Signin = () => {
     }
     return isValid
   }
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (isValidate(user)) {
       console.log(user)
@@ -61,57 +61,74 @@ const Signin = () => {
       //   });
       // }
 
-      axios.post(`${base_url}/token`, user).then(
-        (resp) => {
-          if (resp.data.length == 0) {
-            swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "Wrong Credentials Entered or you have not registered yet.",
-            });
-          }
-          else {
-            localStorage.setItem("userToken", resp.data.token);
-            localStorage.setItem("userEmail", user.email)
-            const userDetails = axios.get(`${base_url}/api/users/getuserbyemail/${user.email}`);
-            console.log(userDetails);
+      // axios.post(`${base_url}/token`, user).then(
+      //   (resp) => {
+      //     if (resp.data.length == 0) {
+      //       swal.fire({
+      //         icon: "error",
+      //         title: "Oops...",
+      //         text: "Wrong Credentials Entered or you have not registered yet.",
+      //       });
+      //     }
+      //     else {
+      //       localStorage.setItem("userToken", resp.data.token);
+      //       localStorage.setItem("userEmail", user.email)
+      //       const userDetails = axios.get(`${base_url}/api/users/getuserbyemail/${user.email}`);
+      //       console.log(userDetails);
 
 
-            //   if (response.data[0].admin == true) {
-            //     window.location = "/admin";
-            //     sessionStorage.setItem("admin", "admin");
-            //   }
-            //   // else if((localStorage.getItem("user")  null)){
-            //   // };
-            //   else {
-            //     sessionStorage.setItem("username", response.data[0].name);
-            //     const userdata = {
-            //       name: response.data[0].name,
-            //       email: response.data[0].email,
-            //       city: response.data[0].city,
-            //       phone: response.data[0].phone,
-            //     };
-            //     sessionStorage.setItem("userdata", JSON.stringify(userdata));
-            //     sessionStorage.setItem("userSession", response.data[0].email);
-            //     localStorage.setItem("user", response.data[0].email);
-            //     cookie.save("userdata", JSON.stringify(userdata), { path: '/' });
-            //     window.location = "/home";
-            //   }
-            // }
-          }
-        },
-        (error) => {
-          console.log(error);
-          swal.fire({
-            icon: "error",
-            title: "Oh no!",
-            text: "Server is down",
-          });
-        }
-      );
+      //       //   if (response.data[0].admin == true) {
+      //       //     window.location = "/admin";
+      //       //     sessionStorage.setItem("admin", "admin");
+      //       //   }
+      //       //   // else if((localStorage.getItem("user")  null)){
+      //       //   // };
+      //       //   else {
+      //       //     sessionStorage.setItem("username", response.data[0].name);
+      //       //     const userdata = {
+      //       //       name: response.data[0].name,
+      //       //       email: response.data[0].email,
+      //       //       city: response.data[0].city,
+      //       //       phone: response.data[0].phone,
+      //       //     };
+      //       //     sessionStorage.setItem("userdata", JSON.stringify(userdata));
+      //       //     sessionStorage.setItem("userSession", response.data[0].email);
+      //       //     localStorage.setItem("user", response.data[0].email);
+      //       //     cookie.save("userdata", JSON.stringify(userdata), { path: '/' });
+      //       //     window.location = "/home";
+      //       //   }
+      //       // }
+      //     }
+      //   },
+      //   (error) => {
+      //     console.log(error);
+      //     swal.fire({
+      //       icon: "error",
+      //       title: "Oh no!",
+      //       text: "Server is down",
+      //     });
+      //   }
+      // );
 
+      const resp1 = await axios.post(`${base_url}/token`, user);
+      console.log(resp1);
+      localStorage.setItem("userToken", resp1.data.token);
+      localStorage.setItem("userEmail", user.email)
+
+      const resp2 = await axios.get(`${base_url}/api/users/getuserbyemail/${user.email}`);
+      console.log(resp2);
+      const userDetails = resp2.data;
+      localStorage.setItem("userId", userDetails.id);
+      if(userDetails.userRole.roleName === "ROLE_USER"){
+        navigate("/user");
+      }
+      else if(userDetails.userRole.roleName === "ROLE_MANAGER"){
+        navigate("/manager");
+      }
+      else if(userDetails.userRole.roleName === "ROLE_ADMIN"){
+        navigate("/admin");
+      }
     }
-
   }
 
   //return (

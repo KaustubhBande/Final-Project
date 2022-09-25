@@ -1,9 +1,10 @@
 import React from 'react';
+import UserProfiles from './UserProfiles';
 
 const ManagerProfile = () => {
     return (
         <div>
-            <h1>Manager Profile</h1>
+            <UserProfiles />
         </div>
     );
 };

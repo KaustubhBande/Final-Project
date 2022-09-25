@@ -1,9 +1,10 @@
 import React from 'react';
+import UserProfiles from './UserProfiles';
 
 const AdminProfile = () => {
     return (
         <div>
-            <h1>Admin Profile</h1>
+            <UserProfiles />
         </div>
     );
 };

@@ -10,9 +10,7 @@ const TurfList = (props) => {
     let [dataobj, setDataObj] = useState([]);
     useEffect(() => {
         console.log(location);
-        axios.get(`${base_url}/api/turfs/getturfbyadd/${location.state}`, {
-            headers : {Authorization : `Bearer ${localStorage.getItem("userToken")}`}
-        })
+        axios.get(`${base_url}/api/turfs/getturfbyadd/${location.state}`)
             .then((response) => {
                 console.log(response);
                 setDataObj(response.data);

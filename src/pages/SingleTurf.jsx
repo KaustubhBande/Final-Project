@@ -10,9 +10,7 @@ const SingleTurf = () => {
     let [turfData, setTurfData] = useState({});
     useEffect(() => {
         console.log(location.state);
-        axios.get(`${base_url}/api/turfs/getturf/${location.state}`, {
-            headers : {Authorization : `Bearer ${localStorage.getItem("userToken")}`}
-        })
+        axios.get(`${base_url}/api/turfs/getturf/${location.state}`)
             .then((response) => {
                 console.log(response);
                 setTurfData(response.data);
