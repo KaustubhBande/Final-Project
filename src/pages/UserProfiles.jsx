@@ -78,7 +78,7 @@ const UserProfiles = () => {
                             </div>
                         </div>
                     </div>
-                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button" onClick={updateUser}>Save Profile</button></div>
+                    <div class="mt-5 text-center"><button class="btn btn-success profile-button" type="button" onClick={updateUser}>Save Profile</button></div>
                 </div>
             </div >
         </div >

@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import base_url from "../utils/bootapi";
 import swal from "sweetalert2";
+import { NavLocation } from '../components/Header';
+
 
 const Signin = () => {
 
@@ -71,29 +73,44 @@ const Signin = () => {
       }
     }
   }
+  
+    const handleLogout = () => {
+        localStorage.removeItem("userToken");
+        localStorage.removeItem("userEmail");
+        localStorage.removeItem("userId");
+        navigate("/", { replace: true });
+    }
 
   return (
     <>
+    <div className='headere bg-success'>
+            <ul className='header-menu align-content-center justify-content-end px-5 py-md-4'>
+                    <Link to="/" className="link"><li>Home</li></Link>
+                    <NavLocation />
+                    {localStorage.getItem("userToken") === null ? <Link to="/signin" className="link"><li>Signin</li></Link> : <Link to="/" className="link" onClick={handleLogout}><li>Logout</li></Link>}
+                    <Link to="/aboutus" className="link"><li>About Us</li></Link>
+                </ul>
+            </div>
       <div class="login-img">
         <div className="vh-100 d-flex">
           <div className="container w-75 m-auto ">
-            <div className="row">
+            <div className="row ">
               <div className="col-lg-5 ms-5 ">
 
               </div>
-              <div className="col-lg-5 log ms-5 ">
+              <div className="col-lg-5 log ms-5 bg-success">
                 <div className="m-auto w-75 pt-5 pb-5 align-self-center ">
                   <h1
-                    className="text-center fw-bold mb-3"
-                    style={{ color: "#5e2e02" }}
+                    className="text-center fw-bold mb-3 text-light"
+                    // style={{ color: "#5e2e02" }}
                   >
                     PurePlay.com
                   </h1>
-                  <h1 className="text-center display-4">Login</h1>
+                  <h1 className="text-center display-4 text-light">Login</h1>
 
                   <form onSubmit={handleSubmit} className="row g-3 mt-3">
                     <div className="col-md-12">
-                      <label for="email" class="form-label fs-5">
+                      <label for="email" class="form-label fs-5 text-light">
                         Email-ID
                       </label>
                       <input
@@ -108,7 +125,7 @@ const Signin = () => {
                       />
                     </div>
                     <div className="col-md-12 mt-4">
-                      <label for="password" className="form-label fs-5">
+                      <label for="password" className="form-label fs-5 text-light">
                         Password
                       </label>
                       <input
@@ -124,13 +141,13 @@ const Signin = () => {
                     <div class="col-md-12 text-center">
                       <button
                         type="submit"
-                        class="btn btn-lg btn-primary ps-5 pe-5 p-2  mb-2"
+                        class="btn btn-lg btn-dark ps-5 pe-5 p-2  mb-2"
                         onClick={handleSubmit}
                       >
                         Login
                       </button>
                       <br />
-                      <h5 >Don't have an account? Click <Link to="/signup">here</Link></h5>
+                      <h5 className="text-light">Don't have an account? Click <Link to="/signup" className="text-light">here</Link></h5>
                     </div>
                   </form>
                 </div>

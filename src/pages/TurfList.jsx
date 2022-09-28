@@ -1,13 +1,17 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import base_url from '../utils/bootapi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Turf from '../components/Turf';
+import { NavLocation } from '../components/Header';
+import '../css/Header.css';
 
 const TurfList = (props) => {
     const location = useLocation();
+    const navigate = useNavigate();
     let [dataobj, setDataObj] = useState([]);
+
     useEffect(() => {
         console.log(location);
         axios.get(`${base_url}/api/turfs/getturfbyadd/${location.state}`)
@@ -21,13 +25,29 @@ const TurfList = (props) => {
             )
     }, []);
 
+    const handleLogout = () => {
+        localStorage.removeItem("userToken");
+        localStorage.removeItem("userEmail");
+        localStorage.removeItem("userId");
+        navigate("/", { replace: true });
+    }
+
     return (
-        <div className='d-flex-row justify-content-center align-content-center'>
-            {dataobj.map((item, index) => {
-                return <Turf loc={item.id} name={item.turfName} address={item.turfAddress} contact={item.turfContact}/> 
-            })}
-           
-        </div>
+        <>
+            <div className='bg-success'>
+                <ul className='header-menu align-content-center justify-content-end px-5 py-md-4'>
+                    <Link to="/" className="link"><li>Home</li></Link>
+                    <NavLocation />
+                    {localStorage.getItem("userToken") === null ? <Link to="/signin" className="link"><li>Signin</li></Link> : <Link to="/" className="link" onClick={handleLogout}><li>Logout</li></Link>}
+                    <Link to="/aboutus" className="link"><li>About Us</li></Link>
+                </ul>
+            </div>
+            <div className='d-flex'>
+                {dataobj.map((item, index) => {
+                    return <Turf loc={item.id} name={item.turfName} address={item.turfAddress} contact={item.turfContact} />
+                })}
+            </div>
+        </>
     );
 };
 

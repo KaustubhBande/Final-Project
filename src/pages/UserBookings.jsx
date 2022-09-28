@@ -27,7 +27,7 @@ const UserBookings = () => {
         getBookingsOfUser();
     }
     return (
-        <div>
+        <div className='m-5 p-5'>
             <Table striped bordered hover>
                 <thead>
                     <tr>

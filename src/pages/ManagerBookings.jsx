@@ -10,7 +10,7 @@ const ManagerBookings = () => {
         getBookingsOfTurf();
     }, []);
     const getBookingsOfTurf = async () => {
-        const response = await axios.get(`${base_url}/api/bookings/getbookingsofturf/3`, {
+        const response = await axios.get(`${base_url}/api/bookings/getbookingsofturf/4`, {
             headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` }
         });
         console.log(response);

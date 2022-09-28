@@ -1,15 +1,17 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import base_url from '../utils/bootapi';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col } from 'react-grid-system';
+import { NavLocation } from '../components/Header';
 
 
 const SingleTurf = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     const [turfData, setTurfData] = useState({});
     const [pageDetails, setPageDetails] = useState({
         date: ""
@@ -72,14 +74,11 @@ const SingleTurf = () => {
     const timeArray = ['6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'];
 
     const makeBooking = async () => {
-        timeArray.forEach( async (item, index) => {
+        timeArray.forEach(async (item, index) => {
             const element = document.getElementById(item);
             if (element.checked === true && element.disabled === false) {
                 console.log(element.name);
-                // const newObjInput2 = { ...bookingDetailsObject, bookingTime: element.name }
-                // setBookingDetailsObject(newObjInput2);
-                // console.log(bookingDetailsObject);
-                // console.log(pageDetails.date);
+
                 let inputPackage = {
                     bookingDate: "2022-09-28",
                     bookingTime: element.value,
@@ -95,8 +94,24 @@ const SingleTurf = () => {
             }
         })
     }
+
+    const handleLogout = () => {
+        localStorage.removeItem("userToken");
+        localStorage.removeItem("userEmail");
+        localStorage.removeItem("userId");
+        navigate("/", { replace: true });
+    }
+
     return (
         <>
+            <div className='bg-success'>
+                <ul className='header-menu align-content-center justify-content-end px-5 py-md-4'>
+                    <Link to="/" className="link"><li>Home</li></Link>
+                    <NavLocation />
+                    {localStorage.getItem("userToken") === null ? <Link to="/signin" className="link"><li>Signin</li></Link> : <Link to="/" className="link" onClick={handleLogout}><li>Logout</li></Link>}
+                    <Link to="/aboutus" className="link"><li>About Us</li></Link>
+                </ul>
+            </div>
             <Container>
                 <Row>
                     <Col md={4}>
@@ -129,7 +144,17 @@ const SingleTurf = () => {
                         </Row>
                     </Col>
                 </Row>
-                <Button onClick={makeBooking}>Confirm Booking</Button>
+                <Row>
+                    <Col md={10}>
+                        <h5></h5>
+                    </Col>
+                    <Col md={2}>
+                        <Button onClick={makeBooking} className="my-5" variant='success' >Confirm Booking</Button>
+                    </Col>
+                </Row>
+                <Row>
+
+                </Row>
             </Container>
         </>
     );
@@ -138,9 +163,21 @@ const SingleTurf = () => {
 export default SingleTurf;
 
 const CheckBox = (props) => {
+    const [cost, setCost] = useState(0);
+    const timeArray = ['6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'];
+    const calculateCost = () => {
+        setCost(0);
+        timeArray.forEach(async (item, index) => {
+            const element = document.getElementById(item);
+            if (element.checked === true && element.disabled === false) {
+                setCost(cost + 1000);
+            }
+        })
+        console.log(cost);
+    }
     return (
         <div className='my-5 mx-3'>
-            <input type="checkbox" id={props.val} name={props.val} value={props.val} />
+            <input type="checkbox" id={props.val} name={props.val} value={props.val} onChange={calculateCost} />
             <label className='mx-2'>{props.val}</label>
         </div>
     );
