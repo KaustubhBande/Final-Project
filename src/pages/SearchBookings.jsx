@@ -51,7 +51,7 @@ const SearchBookings = () => {
                 headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` }
             });
             console.log(resp1);
-            const resp = await axios.get(`${base_url}/api/bookings/getbookingsofturf/${resp1.data.id}`, {
+            const resp = await axios.get(`${base_url}/api/bookings/getturfbookingsforadmin/${resp1.data.id}`, {
                 headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` }
             });
             console.log(resp);

@@ -17,7 +17,7 @@ const ManagerBookings = () => {
         setBookings(response.data);
     }
     return (
-        <div>
+        <div className='my-5 p-3'>
             <Table striped bordered hover>
                 <thead>
                     <tr>
