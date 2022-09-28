@@ -17,25 +17,25 @@ const SignUp = () => {
 
   const handleChange = (e) => {
 
-    if (e.target.firstname == 'firstname') {
+    if (e.target.name === 'firstname') {
       setFirstNameError("")
     }
 
-    if (e.target.name == 'lastname') {
+    if (e.target.name === 'lastname') {
       setLastNameError("")
     }
 
 
-    if (e.target.name == 'contact') {
+    if (e.target.name === 'contact') {
       setContactError("")
     }
 
-    if (e.target.name == 'email') {
+    if (e.target.name === 'email') {
       setEmailError("")
     }
 
 
-    if (e.target.name == 'password') {
+    if (e.target.name === 'password') {
       setPasswordError("")
     }
 
@@ -90,127 +90,42 @@ const SignUp = () => {
     if (isValidate(user)) {
       console.log(user)
     }
-
   }
-  //     return (
-
-  //         <div className="card" style={{width: '50rem', marginLeft:'30%'}}>
-
-  //   <div className="card-body">
-  //   <form onSubmit={handleSubmit}>
-  //         <h3>Sign Up</h3>
-  //         <div className="mb-3">
-  //           <label>First name</label>
-  //           <input
-  //             type="text"
-  //             name='firstname'
-  //             onChange={handleChange}
-  //             className="form-control"
-  //             placeholder="First name"
-  //           />
-  //            {FirstNameError != "" && <p className="text-danger">{FirstNameError}</p>}
-  //         </div>
-  //         <div className="mb-3 lg-4">
-  //           <label>Last name</label>
-  //           <input type="text"
-  //           name='lastname'
-  //           onChange={handleChange}
-  //           className="form-control" placeholder="Last name" />
-
-  //           {LastNameError != "" && <p className="text-danger">{LastNameError}</p>}
-  //         </div>
-  //         <div className="mb-3">
-  //           <label>Email address</label>
-  //           <input
-  //             type="email"
-  //             name='email'
-  //             onChange={handleChange}
-  //             className="form-control"
-  //             placeholder="Enter email"
-  //           />
-
-  //           {emailError != "" && <p className="text-danger">{emailError}</p>}
-  //         </div>
-  //         <div className="mb-3">
-  //           <label>Contact</label>
-  //           <input
-  //             type="text"
-  //             name='contact'
-  //             onChange={handleChange}
-  //             className="form-control"
-  //             placeholder="Enter Number"
-  //           />
-  //           { ContactError != "" && <p className="text-danger">{ContactError}</p>}
-  //         </div>
-  //         <div className="mb-3">
-  //           <label>Password</label>
-  //           <input
-  //             type="password"
-  //             name='password'
-  //             onChange={handleChange}
-  //             className="form-control"
-  //             placeholder="Enter password"
-  //           />
-
-  //           {passwordError != "" && <p className="text-danger">{passwordError}</p>}
-  //         </div>
-  //         <div className="d-grid">
-  //           <button type="submit"
-  //           onClick={handleSubmit}
-  //           className="btn btn-primary">
-  //             Sign Up
-  //           </button>
-  //         </div>
-  //         <p className="forgot-password text-right">
-  //           Already registered <a href="/sign-in">sign in?</a>
-  //         </p>
-  //       </form>
-
-  //   </div>
-  // </div>
-  //          )
-
-
-
-
-
-
 
   return (
     <div className="login-img">
-    <div style={{ marginTop: 100 }}>
-      <div style={styles.containers}>
+      <div style={{ marginTop: 100 }}>
+        <div style={styles.containers}>
 
-        <div className="mb-3">
-          <h3 style={{ textAlign: "center", marginBottom: 50 }}>SignUp</h3>
+          <div className="mb-3">
+            <h3 style={{ textAlign: "center", marginBottom: 50 }}>SignUp</h3>
+          </div>
         </div>
-      </div>
-      <br />
-      <br />
+        <br />
+        <br />
 
-      <div style={styles.container}>
-        <div className="mb-3">
-          <label> First Name</label>
-          <input
+        <div style={styles.container}>
+          <div className="mb-3">
+            <label> First Name</label>
+            <input
 
-            name="firstname"
-            onChange={handleChange}
-            className="form-control"
-          />
-          {FirstNameError != "" && <p className="text-danger">{FirstNameError}</p>}
-        </div>
-
-        <div className="mb-3">
-          <label> Last Name</label>
-          <input
-
-            name="lastname"
-            onChange={handleChange}
-            className="form-control"
-          />
-          {LastNameError != "" && <p className="text-danger">{LastNameError}</p>}
+              name="firstname"
+              onChange={handleChange}
+              className="form-control"
+            />
+            {FirstNameError != "" && <p className="text-danger">{FirstNameError}</p>}
           </div>
 
+          <div className="mb-3">
+            <label> Last Name</label>
+            <input
+
+              name="lastname"
+              onChange={handleChange}
+              className="form-control"
+            />
+            {LastNameError != "" && <p className="text-danger">{LastNameError}</p>}
+          </div>
 
           <div className="mb-3">
             <label>Email</label>
@@ -218,7 +133,6 @@ const SignUp = () => {
               type="email"
               name="email"
               onChange={handleChange}
-              
               className="form-control"
               required
             />
@@ -233,7 +147,7 @@ const SignUp = () => {
               onChange={handleChange}
               className="form-control"
             />
-             { ContactError != "" && <p className="text-danger">{ContactError}</p>}
+            {ContactError != "" && <p className="text-danger">{ContactError}</p>}
           </div>
 
           <div className="mb-3">
@@ -244,7 +158,7 @@ const SignUp = () => {
               type="password"
               className="form-control"
             ></input>
-             {passwordError != "" && <p className="text-danger">{passwordError}</p>}
+            {passwordError != "" && <p className="text-danger">{passwordError}</p>}
           </div>
           <div className="mb-3" >
             <button
@@ -255,13 +169,13 @@ const SignUp = () => {
             >
               SignUp
             </button>
-            <br/><br/><br/>
+            <br /><br /><br />
             <h5 >Already have an account? Click <Link to="/signin">here</Link></h5>
           </div>
         </div>
       </div>
     </div>
-    
+
   );
 };
 

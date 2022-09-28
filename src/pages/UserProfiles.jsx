@@ -18,7 +18,7 @@ const UserProfiles = () => {
     const inputChangeHandler = (e) => {
         const newUser = { ...user, [e.target.name]: e.target.value };
         setUser(newUser);
-      };
+    };
     const updateUser = async (e) => {
         e.preventDefault();
         e.stopPropagation();

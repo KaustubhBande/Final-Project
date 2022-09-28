@@ -1,10 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import '../css/Header.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function Header() {
+
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        localStorage.removeItem("userToken");
+        localStorage.removeItem("userEmail");
+        localStorage.removeItem("userId");
+        navigate("/", {replace: true}); 
+    }
     return (
         <>
             <div className="header">
@@ -12,8 +21,8 @@ function Header() {
 
                 <ul className='header-menu'>
                     <NavLocation />
-                    <Link to="/signin" className="link"><li>Signin</li></Link>
-                    <Link to="/signin" className="link"><li>About Us</li></Link>
+                    {localStorage.getItem("userToken") === null ? <Link to="/signin" className="link"><li>Signin</li></Link> : <Link to="/" className="link" onClick={handleLogout}><li>Logout</li></Link>}
+                    <Link to="/aboutus" className="link"><li>About Us</li></Link>
                 </ul>
             </div>
         </>

@@ -16,6 +16,7 @@ import Adminhome from "./pages/Adminhome";
 import SearchBookings from "./pages/SearchBookings";
 import AdminProfile from "./pages/AdminProfile";
 import UserProfiles from "./pages/UserProfiles";
+import AboutUs from "./pages/AboutUs";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route exact path="/signin" element={<Signin />} />
         <Route exact path="/turflist" element={<TurfList />} />
         <Route exact path="/singleturf" element={<SingleTurf />} />
+        <Route exact path="/aboutus" element={<AboutUs />} />
         {/* <Route exact path="*" element={<Error />}/> */}
       </Routes>
 

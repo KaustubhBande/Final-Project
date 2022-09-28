@@ -17,7 +17,7 @@ const Admin = () => {
         <div>
             <Navbar bg="success" variant='dark' expand="lg">
                 <Container>
-                    <Navbar.Brand href="#home">Pureplay</Navbar.Brand>
+                    <Navbar.Brand as={Link} to="/">Pureplay</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
