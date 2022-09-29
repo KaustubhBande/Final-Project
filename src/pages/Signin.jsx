@@ -83,7 +83,7 @@ const Signin = () => {
 
   return (
     <>
-    <div className='headere bg-success'>
+    <div className='bg-success'>
             <ul className='header-menu align-content-center justify-content-end px-5 py-md-4'>
                     <Link to="/" className="link"><li>Home</li></Link>
                     <NavLocation />

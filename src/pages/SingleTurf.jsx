@@ -5,6 +5,7 @@ import base_url from '../utils/bootapi';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Swal from 'sweetalert2';
 import { Container, Row, Col } from 'react-grid-system';
 import { NavLocation } from '../components/Header';
 
@@ -80,7 +81,7 @@ const SingleTurf = () => {
                 console.log(element.name);
 
                 let inputPackage = {
-                    bookingDate: "2022-09-28",
+                    bookingDate: "2022-09-29",
                     bookingTime: element.value,
                     slotbookingDate: pageDetails.date,
                     user: { id: parseInt(localStorage.getItem("userId")) },
@@ -91,6 +92,29 @@ const SingleTurf = () => {
                     headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` }
                 });
                 console.log(resp);
+                if (resp.data.id === null) {
+                    console.log("Booking unsuccessful")
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oh no!",
+                        text: "Booking not done.",
+                    });
+                }
+                else {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Hurreh!!!",
+                        text: "Your booking is done successfully",
+                    });
+                    const emailBody = {
+                        to: "kaustubhdb96@gmail.com",
+                        message: `Your booking Details are : \n Date : ${resp.data.slotbookingDate} \n Time : ${resp.data.bookingTime} \n Turf Name : ${turfData.turfName} \n Turf Location : ${turfData.turfAddress}`
+                    }
+                    const emailResp = await axios.post(`${base_url}/sendemail`, emailBody, {
+                        headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` }
+                    });
+                    console.log(emailResp);
+                }
             }
         })
     }
