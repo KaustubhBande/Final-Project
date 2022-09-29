@@ -9,8 +9,8 @@ const UserProfiles = () => {
         getUserDetails();
     }, []);
     const getUserDetails= async () => {
-        const userDetails = await axios.get(`${base_url}/api/users/getuser/${localStorage.getItem("userId")}`, {
-            headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` }
+        const userDetails = await axios.get(`${base_url}/api/users/getuser/${sessionStorage.getItem("userId")}`, {
+            headers: { Authorization: `Bearer ${sessionStorage.getItem("userToken")}` }
         });
         console.log(userDetails);
         setUser(userDetails.data);
@@ -23,8 +23,8 @@ const UserProfiles = () => {
         e.preventDefault();
         e.stopPropagation();
         console.log(user);
-        const updatedUserDetails = await axios.put(`${base_url}/api/users/updateuser/${localStorage.getItem("userId")}`, user, {
-            headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` }
+        const updatedUserDetails = await axios.put(`${base_url}/api/users/updateuser/${sessionStorage.getItem("userId")}`, user, {
+            headers: { Authorization: `Bearer ${sessionStorage.getItem("userToken")}` }
         });
         console.log(updatedUserDetails);
         if(updatedUserDetails !== null ){

@@ -213,7 +213,7 @@ const SignUp = () => {
       console.log("pass");
       console.log(user);
       const resp = await axios.get(`${base_url}/api/users/getuserbyemail/${user.email}`);
-      if (resp.status === 200) {
+      if (resp.data.id === null) {
         Swal.fire({
           icon: "error",
           title: "Oh no!",

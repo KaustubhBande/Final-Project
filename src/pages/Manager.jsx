@@ -8,9 +8,9 @@ const Manager = () => {
 
     const navigate = useNavigate();
     const handleLogout = () => {
-        localStorage.removeItem("userToken");
-        localStorage.removeItem("userEmail");
-        localStorage.removeItem("userId");
+        sessionStorage.removeItem("userToken");
+        sessionStorage.removeItem("userEmail");
+        sessionStorage.removeItem("userId");
         navigate("/", {replace: true});
     }
     return (

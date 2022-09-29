@@ -11,7 +11,7 @@ const ManagerBookings = () => {
     }, []);
     const getBookingsOfTurf = async () => {
         const response = await axios.get(`${base_url}/api/bookings/getbookingsofturf/4`, {
-            headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` }
+            headers: { Authorization: `Bearer ${sessionStorage.getItem("userToken")}` }
         });
         console.log(response);
         setBookings(response.data);

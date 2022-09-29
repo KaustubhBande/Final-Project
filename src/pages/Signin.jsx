@@ -55,13 +55,13 @@ const Signin = () => {
       console.log(user);
       const resp1 = await axios.post(`${base_url}/token`, user);
       console.log(resp1);
-      localStorage.setItem("userToken", resp1.data.token);
-      localStorage.setItem("userEmail", user.email)
+      sessionStorage.setItem("userToken", resp1.data.token);
+      sessionStorage.setItem("userEmail", user.email)
 
       const resp2 = await axios.get(`${base_url}/api/users/getuserbyemail/${user.email}`);
       console.log(resp2);
       const userDetails = resp2.data;
-      localStorage.setItem("userId", userDetails.id);
+      sessionStorage.setItem("userId", userDetails.id);
       if (userDetails.userRole.roleName === "ROLE_USER") {
         navigate("/user");
       }
@@ -75,9 +75,9 @@ const Signin = () => {
   }
   
     const handleLogout = () => {
-        localStorage.removeItem("userToken");
-        localStorage.removeItem("userEmail");
-        localStorage.removeItem("userId");
+        sessionStorage.removeItem("userToken");
+        sessionStorage.removeItem("userEmail");
+        sessionStorage.removeItem("userId");
         navigate("/", { replace: true });
     }
 
@@ -87,7 +87,7 @@ const Signin = () => {
             <ul className='header-menu align-content-center justify-content-end px-5 py-md-4'>
                     <Link to="/" className="link"><li>Home</li></Link>
                     <NavLocation />
-                    {localStorage.getItem("userToken") === null ? <Link to="/signin" className="link"><li>Signin</li></Link> : <Link to="/" className="link" onClick={handleLogout}><li>Logout</li></Link>}
+                    {sessionStorage.getItem("userToken") === null ? <Link to="/signin" className="link"><li>Signin</li></Link> : <Link to="/" className="link" onClick={handleLogout}><li>Logout</li></Link>}
                     <Link to="/aboutus" className="link"><li>About Us</li></Link>
                 </ul>
             </div>

@@ -41,18 +41,18 @@ const SearchBookings = () => {
         if(val === "date"){
             console.log(typeof(pageDetails.date));
             const resp = await axios.get(`${base_url}/api/bookings/getbookingsbydate/${pageDetails.date}`, {
-                headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` }
+                headers: { Authorization: `Bearer ${sessionStorage.getItem("userToken")}` }
             });
             console.log(resp);
             setBookingDetails(resp.data);
         }
         else if(val === "turf"){
             const resp1 = await axios.get(`${base_url}/api/turfs/getturfbyname/${pageDetails.name}`, {
-                headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` }
+                headers: { Authorization: `Bearer ${sessionStorage.getItem("userToken")}` }
             });
             console.log(resp1);
             const resp = await axios.get(`${base_url}/api/bookings/getturfbookingsforadmin/${resp1.data.id}`, {
-                headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` }
+                headers: { Authorization: `Bearer ${sessionStorage.getItem("userToken")}` }
             });
             console.log(resp);
             setBookingDetails(resp.data);
@@ -60,11 +60,11 @@ const SearchBookings = () => {
         }
         else if(val === "name"){
             const resp1 = await axios.get(`${base_url}/api/users/getuserbyemail/${pageDetails.name}`, {
-                headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` }
+                headers: { Authorization: `Bearer ${sessionStorage.getItem("userToken")}` }
             });
             console.log(resp1);
             const resp2 = await axios.get(`${base_url}/api/bookings/getuserbookingsforadmin/${resp1.data.id}`, {
-                headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` }
+                headers: { Authorization: `Bearer ${sessionStorage.getItem("userToken")}` }
             });
             console.log(resp2);
             setBookingDetails(resp2.data);

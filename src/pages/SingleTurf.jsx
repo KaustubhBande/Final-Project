@@ -23,7 +23,7 @@ const SingleTurf = () => {
         bookingDate: inputDate,
         bookingTime: "",
         slotbookingDate: "",
-        user: { id: parseInt(localStorage.getItem("userId")) },
+        user: { id: parseInt(sessionStorage.getItem("userId")) },
         turf: { id: parseInt(location.state) }
     });
     const [bookings, setBookings] = useState([]);
@@ -84,12 +84,12 @@ const SingleTurf = () => {
                     bookingDate: "2022-09-29",
                     bookingTime: element.value,
                     slotbookingDate: pageDetails.date,
-                    user: { id: parseInt(localStorage.getItem("userId")) },
+                    user: { id: parseInt(sessionStorage.getItem("userId")) },
                     turf: { id: parseInt(location.state) }
                 }
                 console.log(inputPackage);
                 const resp = await axios.post(`${base_url}/api/bookings/add`, inputPackage, {
-                    headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` }
+                    headers: { Authorization: `Bearer ${sessionStorage.getItem("userToken")}` }
                 });
                 console.log(resp);
                 if (resp.data.id === null) {
@@ -111,7 +111,7 @@ const SingleTurf = () => {
                         message: `Your booking Details are : \n Date : ${resp.data.slotbookingDate} \n Time : ${resp.data.bookingTime} \n Turf Name : ${turfData.turfName} \n Turf Location : ${turfData.turfAddress}`
                     }
                     const emailResp = await axios.post(`${base_url}/sendemail`, emailBody, {
-                        headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` }
+                        headers: { Authorization: `Bearer ${sessionStorage.getItem("userToken")}` }
                     });
                     console.log(emailResp);
                 }
@@ -120,9 +120,9 @@ const SingleTurf = () => {
     }
 
     const handleLogout = () => {
-        localStorage.removeItem("userToken");
-        localStorage.removeItem("userEmail");
-        localStorage.removeItem("userId");
+        sessionStorage.removeItem("userToken");
+        sessionStorage.removeItem("userEmail");
+        sessionStorage.removeItem("userId");
         navigate("/", { replace: true });
     }
 
@@ -132,7 +132,7 @@ const SingleTurf = () => {
                 <ul className='header-menu align-content-center justify-content-end px-5 py-md-4'>
                     <Link to="/" className="link"><li>Home</li></Link>
                     <NavLocation />
-                    {localStorage.getItem("userToken") === null ? <Link to="/signin" className="link"><li>Signin</li></Link> : <Link to="/" className="link" onClick={handleLogout}><li>Logout</li></Link>}
+                    {sessionStorage.getItem("userToken") === null ? <Link to="/signin" className="link"><li>Signin</li></Link> : <Link to="/" className="link" onClick={handleLogout}><li>Logout</li></Link>}
                     <Link to="/aboutus" className="link"><li>About Us</li></Link>
                 </ul>
             </div>

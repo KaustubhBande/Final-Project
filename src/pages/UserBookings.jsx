@@ -11,8 +11,8 @@ const UserBookings = () => {
         getBookingsOfUser();
     }, []);
     const getBookingsOfUser = async () => {
-        const response = await axios.get(`${base_url}/api/bookings/getbookingsofuser/${localStorage.getItem("userId")}`, {
-            headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` }
+        const response = await axios.get(`${base_url}/api/bookings/getbookingsofuser/${sessionStorage.getItem("userId")}`, {
+            headers: { Authorization: `Bearer ${sessionStorage.getItem("userToken")}` }
         });
         console.log(response);
         setBookings(response.data);
@@ -21,7 +21,7 @@ const UserBookings = () => {
     const cancelBooking = async (item, index) => {
         console.log(item.id);
         const response = await axios.delete(`${base_url}/api/bookings/delete/${item.id}`, {
-            headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` }
+            headers: { Authorization: `Bearer ${sessionStorage.getItem("userToken")}` }
         });
         console.log(response);
         getBookingsOfUser();

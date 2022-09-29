@@ -10,9 +10,9 @@ const AboutUs = () => {
         document.title = "About Us"
     })
     const handleLogout = () => {
-        localStorage.removeItem("userToken");
-        localStorage.removeItem("userEmail");
-        localStorage.removeItem("userId");
+        sessionStorage.removeItem("userToken");
+        sessionStorage.removeItem("userEmail");
+        sessionStorage.removeItem("userId");
         navigate("/", { replace: true });
     }
     return (
@@ -21,7 +21,7 @@ const AboutUs = () => {
                 <ul className='header-menu align-content-center justify-content-end px-5 py-md-4'>
                     <Link to="/" className="link"><li>Home</li></Link>
                     <NavLocation />
-                    {localStorage.getItem("userToken") === null ? <Link to="/signin" className="link"><li>Signin</li></Link> : <Link to="/" className="link" onClick={handleLogout}><li>Logout</li></Link>}
+                    {sessionStorage.getItem("userToken") === null ? <Link to="/signin" className="link"><li>Signin</li></Link> : <Link to="/" className="link" onClick={handleLogout}><li>Logout</li></Link>}
                     <Link to="/aboutus" className="link"><li>About Us</li></Link>
                 </ul>
             </div>
