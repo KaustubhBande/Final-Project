@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { NavLocation } from '../components/Header';
 import '../css/AboutUs.css';
 import Aditya from '../images/Aditya.jpeg';
-import Harsh from '../images/Harsh.jpg';
+import Harsh from '../images/Harshh.jpeg';
 import Kaustubh from '../images/Kaustubh.jpg';
 import Sagar from '../images/Sagar.jpeg';
 
