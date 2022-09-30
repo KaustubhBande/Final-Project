@@ -9,9 +9,9 @@ function Header() {
 
     const navigate = useNavigate();
     const handleLogout = () => {
-        localStorage.removeItem("userToken");
-        localStorage.removeItem("userEmail");
-        localStorage.removeItem("userId");
+        sessionStorage.removeItem("userToken");
+        sessionStorage.removeItem("userEmail");
+        sessionStorage.removeItem("userId");
         navigate("/", {replace: true}); 
     }
     return (
@@ -21,7 +21,7 @@ function Header() {
 
                 <ul className='header-menu'>
                     <NavLocation />
-                    {localStorage.getItem("userToken") === null ? <Link to="/signin" className="link"><li>Signin</li></Link> : <Link to="/" className="link" onClick={handleLogout}><li>Logout</li></Link>}
+                    {sessionStorage.getItem("userToken") === null ? <Link to="/signin" className="link"><li>Signin</li></Link> : <Link to="/" className="link" onClick={handleLogout}><li>Logout</li></Link>}
                     <Link to="/aboutus" className="link"><li>About Us</li></Link>
                 </ul>
             </div>

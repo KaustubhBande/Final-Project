@@ -81,7 +81,7 @@ const SingleTurf = () => {
                 console.log(element.name);
 
                 let inputPackage = {
-                    bookingDate: "2022-09-29",
+                    bookingDate: "2022-09-30",
                     bookingTime: element.value,
                     slotbookingDate: pageDetails.date,
                     user: { id: parseInt(sessionStorage.getItem("userId")) },
@@ -111,7 +111,7 @@ const SingleTurf = () => {
                         message: `Your booking Details are : \n Date : ${resp.data.slotbookingDate} \n Time : ${resp.data.bookingTime} \n Turf Name : ${turfData.turfName} \n Turf Location : ${turfData.turfAddress}`
                     }
                     const emailResp = await axios.post(`${base_url}/sendemail`, emailBody, {
-                        headers: { Authorization: `Bearer ${sessionStorage.getItem("userToken")}` }
+                        headers: { Authorization: `Bearer ${sessionStorage.getItem("usereToken")}` }
                     });
                     console.log(emailResp);
                 }
@@ -130,7 +130,7 @@ const SingleTurf = () => {
         <>
             <div className='bg-success'>
                 <ul className='header-menu align-content-center justify-content-end px-5 py-md-4'>
-                    <Link to="/" className="link"><li>Home</li></Link>
+                    <Link to="/user" className="link"><li>Home</li></Link>
                     <NavLocation />
                     {sessionStorage.getItem("userToken") === null ? <Link to="/signin" className="link"><li>Signin</li></Link> : <Link to="/" className="link" onClick={handleLogout}><li>Logout</li></Link>}
                     <Link to="/aboutus" className="link"><li>About Us</li></Link>

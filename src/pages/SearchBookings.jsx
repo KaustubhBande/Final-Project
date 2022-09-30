@@ -80,11 +80,11 @@ const SearchBookings = () => {
             </div>
             <div className='col-md-1 '>
                 <input type="radio" id='radio2' name='display' onClick={displayTurf} />
-                <label class="labels m-1" for='radio2'>Turf</label>
+                <label class="labels m-1" for='radio2'>Turf Location</label>
             </div>
             <div className='col-md-1 '>
                 <input type="radio" id='radio3' name='display' onClick={displayName} />
-                <label class="labels m-1" for='radio3'>Name</label>
+                <label class="labels m-1" for='radio3'>User Email</label>
             </div>
             {isDate ?
                 <div className='offset-2 col-md-2'>

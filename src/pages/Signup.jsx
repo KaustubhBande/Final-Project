@@ -85,7 +85,7 @@ const SignUp = () => {
   const isValidate = (user) => {
     let isValid = true;
 
-    if (user.name == "" || user.name == undefined || user.name == null) {
+    if (user.name === "" || user.name == undefined || user.name == null) {
       setNameError("Name required");
       isValid = false;
     }
@@ -213,7 +213,7 @@ const SignUp = () => {
       console.log("pass");
       console.log(user);
       const resp = await axios.get(`${base_url}/api/users/getuserbyemail/${user.email}`);
-      if (resp.data.id === null) {
+      if (resp.data.id !== null) {
         Swal.fire({
           icon: "error",
           title: "Oh no!",
