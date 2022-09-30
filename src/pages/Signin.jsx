@@ -30,27 +30,29 @@ const Signin = () => {
   }
   const isValidate = (user) => {
     let isValid = true;
+    
     if (user.email == "" || user.email == undefined || user.email == null) {
       setEmailError("Email is required")
       isValid = false;
 
     }
 
+    else if (user.email != "" && user.email != null) {
+      if (! /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(user.email)) {
+        setEmailError("Invalid Email format")
+        isValid = false
+      }
+    }
+
     if (user.password == "" || user.password == undefined || user.password == null) {
       setPasswordError("Password is required")
       isValid = false
     }
-
-    if (user.email != "" && user.email != null) {
-      if (! /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(user.email)) {
-        setEmailError("Invalid format")
-        isValid = false
-      }
-    }
     return isValid
   }
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
+    console.log(isValidate(user));
     if (isValidate(user)) {
       console.log(user);
       const resp1 = await axios.post(`${base_url}/token`, user);
@@ -118,11 +120,13 @@ const Signin = () => {
                         className="form-control"
                         id="email"
                         name="email"
+                        value={user.name}
                         onChange={(e) => {
                           setUser({ ...user, email: e.target.value });
                         }}
                         required
                       />
+                      {emailError != "" && <p className="text-warning">{emailError}</p>}
                     </div>
                     <div className="col-md-12 mt-4">
                       <label for="password" className="form-label fs-5 text-light">
@@ -137,6 +141,7 @@ const Signin = () => {
                         }}
                         required
                       />
+                      {passwordError != "" && <p className="text-warning">{passwordError}</p>}
                     </div>
                     <div class="col-md-12 text-center">
                       <button

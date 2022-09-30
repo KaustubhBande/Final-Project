@@ -21,7 +21,7 @@ const SignUp = () => {
     address2: "",
     city: "",
     state: "",
-    pincode: 0,
+    pincode: null,
     userRole: {
       roleId: 1
     }
@@ -89,8 +89,8 @@ const SignUp = () => {
       setNameError("Name required");
       isValid = false;
     }
-
-    if (user.name != "" || user.name != null) {
+    
+    else if (user.name != "" || user.name != null) {
       if (!isNaN(user.name)) {
         setNameError("Name is Invalid");
         isValid = false;
@@ -101,8 +101,8 @@ const SignUp = () => {
       setEmailError("Email required");
       isValid = false;
     }
-
-    if (user.email != "" || user.email != null) {
+    
+    else if (user.email != "" || user.email != null) {
       if (! /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(user.email)) {
         setEmailError("Invalid Email format");
         isValid = false;
@@ -113,8 +113,8 @@ const SignUp = () => {
       setContactError("Contact Is required");
       isValid = false;
     }
-
-    if (user.contactNo != "" || user.contactNo != null) {
+    
+    else if (user.contactNo != "" || user.contactNo != null) {
       if (! /^\d{10}$/.test(user.contactNo)) {
         setContactError("Invalid Contact Number");
         isValid = false;
@@ -125,8 +125,8 @@ const SignUp = () => {
       setPasswordError("Password required");
       isValid = false;
     }
-
-    if (user.password != "" || user.password != null) {
+    
+    else if (user.password != "" || user.password != null) {
       if (/^(.{0,7}|[^0-9]*|[^A-Z]*|[^a-z]*|[a-zA-Z0-9]*)$/.test(user.password)) {
         setPasswordError("Invalid format");
         isValid = false;
@@ -138,7 +138,7 @@ const SignUp = () => {
       isValid = false;
     }
 
-    if (user.confirmPassword != "" || user.confirmPassword != null) {
+    else if (user.confirmPassword != "" || user.confirmPassword != null) {
       if (user.confirmPassword !== user.password) {
         setConfirmPasswordError("Password doesn't match, Type again");
         isValid = false;
@@ -150,7 +150,7 @@ const SignUp = () => {
       isValid = false;
     }
 
-    if (user.address1 != "" || user.address1 != null) {
+    else if (user.address1 != "" || user.address1 != null) {
       if (!isNaN(user.address1)) {
         setAddress1Error("Address1 is Invalid");
         isValid = false;
@@ -162,7 +162,7 @@ const SignUp = () => {
       isValid = false;
     }
 
-    if (user.address2 != "" || user.address2 != null) {
+    else if (user.address2 != "" || user.address2 != null) {
       if (!isNaN(user.address2)) {
         setAddress2Error("Address2 is Invalid");
         isValid = false;
@@ -174,7 +174,7 @@ const SignUp = () => {
       isValid = false;
     }
 
-    if (user.city != "" || user.city != null) {
+    else if (user.city != "" || user.city != null) {
       if (!isNaN(user.city)) {
         setCityError("City is Invalid");
         isValid = false;
@@ -186,7 +186,7 @@ const SignUp = () => {
       isValid = false;
     }
 
-    if (user.state != "" || user.state != null) {
+    else if (user.state != "" || user.state != null) {
       if (!isNaN(user.state)) {
         setStateError("State is Invalid");
         isValid = false;
@@ -198,7 +198,7 @@ const SignUp = () => {
       isValid = false;
     }
 
-    if (user.pincode != "" || user.state != null) {
+    else if (user.pincode != "" || user.state != null) {
       if (!/^\d{6}$/.test(user.pincode)) {
         setPincodeError("Pincode is Invalid");
         isValid = false;

@@ -18,9 +18,9 @@ const SingleTurf = () => {
         date: ""
     });
     const datetime = new Date();
-    const inputDate = "" + (datetime.getFullYear) + "-" + (datetime.getMonth) + "-" + (datetime.getDate);
+    // const inputDate = "" + (datetime.getFullYear) + "-" + (datetime.getMonth) + "-" + (datetime.getDate);
     const [bookingDetailsObject, setBookingDetailsObject] = useState({
-        bookingDate: inputDate,
+        bookingDate: "",
         bookingTime: "",
         slotbookingDate: "",
         user: { id: parseInt(sessionStorage.getItem("userId")) },
@@ -79,9 +79,9 @@ const SingleTurf = () => {
             const element = document.getElementById(item);
             if (element.checked === true && element.disabled === false) {
                 console.log(element.name);
-
+                console.log(new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0]);
                 let inputPackage = {
-                    bookingDate: "2022-09-30",
+                    bookingDate: new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0],
                     bookingTime: element.value,
                     slotbookingDate: pageDetails.date,
                     user: { id: parseInt(sessionStorage.getItem("userId")) },
@@ -111,7 +111,7 @@ const SingleTurf = () => {
                         message: `Your booking Details are : \n Date : ${resp.data.slotbookingDate} \n Time : ${resp.data.bookingTime} \n Turf Name : ${turfData.turfName} \n Turf Location : ${turfData.turfAddress}`
                     }
                     const emailResp = await axios.post(`${base_url}/sendemail`, emailBody, {
-                        headers: { Authorization: `Bearer ${sessionStorage.getItem("usereToken")}` }
+                        headers: { Authorization: `Bearer ${sessionStorage.getItem("userToken")}` }
                     });
                     console.log(emailResp);
                 }
@@ -154,7 +154,8 @@ const SingleTurf = () => {
                     <Col md={8}>
                         <Row className='my-5'>
                             <Col>
-                                <input type="date" className='mx-3' name='date' value={pageDetails.date} onChange={inputChangeHandler} />
+                                <input type="date" className='mx-3' name='date' min={new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0]}
+                                    value={pageDetails.date} onChange={inputChangeHandler} />
                                 <label>Pick a Date</label>
                                 <Button variant='success' className='mx-5' onClick={getBookings}>Search</Button>
                             </Col>

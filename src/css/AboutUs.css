@@ -1,0 +1,36 @@
+.services {
+    margin: 34px;
+    display: flex;
+}
+
+
+.service .box {
+    padding: 60px;
+    margin: 3px 6px;
+    border-radius: 30px;
+}
+
+.service .box img {
+    margin-top: 10px;
+    height: 150px;
+    margin: auto;
+    display: block;
+    border-radius: 100px;
+}
+
+.box p{
+    text-align: center
+}
+
+.center {
+    text-align: center;
+}
+
+/* .text-footer {
+    text-align: center;
+    padding: 10px 0;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+} */
+
